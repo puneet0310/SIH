@@ -7,9 +7,10 @@ import {
   FaLinkedinIn,
   FaInstagram,
   FaTwitter,
-} from "react-icons/fa"; // Import updated icons
+} from "react-icons/fa";
 
-import videosrc from "./assets/videoBg.mp4";
+// Import video file
+import backgroundVideo from '../Components/assets/videoBg.mp4'; // Adjust path as needed
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -29,82 +30,108 @@ const Login = () => {
   };
 
   return (
-    <div className="videoBg">
-      <style>{`@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-* {
-  font-family: poppins, sans-serif;
-  font-size: 1rem;
-  margin: 0;
-  padding: 0;
-  background-color: rgb(255, 254, 253);
-}
-.videoBg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-}
+    <>
+      {/* Internal CSS */}
+      <style>{`
+        .login-container {
+          position: relative;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
+          
+        }
 
-.login-container {
-  display: flex;
-  justify-content: center;
-  background-color: white;
-  margin-top: 250px;
-  border: 10px;
-  z-index: 1;
-}
-.dropDownList {
-  border-radius: 25px;
-}
-.onscreenU {
-  font-size: 1.2rem;
-}
-.userNameIn {
-  border-radius: 25px;
-  width: 50vh;
-  padding: 7px;
-}
-.onscreenP {
-  font-size: 1.2rem;
-}
-.passwordIn {
-  border-radius: 25px;
-  width: 50vh;
-  padding: 7px;
-}
-.submitBtn {
-  background-color: #9767f0;
-  width: 100px;
-  height: 35px;
-  margin-top: 25px;
-  margin-left: 150px;
-}
-.form-group {
-  border: 15px;
-  border-color: black;
-}
-.Heading {
-  font-size: 3.5rem;
-  font-weight: 900;
-  margin-left: 150px;
-}
-.submitBtn:hover {
-  background-color: #ad81ff;
-  width: 100px;
-  height: 35px;
-  margin-top: 25px;
-  margin-left: 150px;
-}
-`}</style>
-      <video autoPlay muted loop id="background-video">
-        <source src={videosrc} type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+        .bg-video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          z-index: -1;
+        }
+
+        .login-form-container {
+          position: relative;
+          background: rgba(255, 255, 255, 0.9);
+          padding: 20px;
+          border-radius: 10px;
+          z-index: 1;
+          box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+          width: 90%;
+          max-width: 400px;
+        }
+
+        .form-group {
+          margin-bottom: 15px;
+        }
+
+        .Heading {
+          font-size: 24px;
+          font-weight: bold;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        .dropDownList {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+        }
+
+        .userNameIn,
+        .passwordIn {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 16px;
+          margin-top: 5px;
+        }
+
+        .submitBtn {
+          width: 100%;
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          border-radius: 5px;
+          font-size: 16px;
+          transition: background-color 0.3s ease;
+        }
+
+        .submitBtn:hover {
+          background-color: #0056b3;
+        }
+
+        .show-password {
+          position: absolute;
+          right: 10px;
+          top: 10px;
+          cursor: pointer;
+        }
+
+        .error-message {
+          color: red;
+          margin-top: 10px;
+          text-align: center;
+        }
+
+      `}</style>
 
       <div className="login-container">
+        {/* Background video */}
+        <video autoPlay muted loop className="bg-video">
+          <source src={backgroundVideo} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Form container */}
         <div className="login-form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -119,7 +146,7 @@ const Login = () => {
               >
                 <option value="">Select</option>
                 <option value="JP">JOB PROVIDER</option>
-                <option value="JS">Looking for an JOB</option>
+                <option value="JS">Looking for a JOB</option>
               </select>
             </div>
             <div className="form-group">
@@ -166,7 +193,7 @@ const Login = () => {
           {usererror && <div className="error-message">{usererror}</div>}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
